@@ -2,13 +2,9 @@ Booktrader-Umbrella
 ===================
 > This will never be public.
 
-To checkout all the repos:
+To checkout and update all the repos:
 
-    % make clone
-
-To update all the repos:
-
-    % make up
+    % make pull
 
 To clean all the repos:
 
