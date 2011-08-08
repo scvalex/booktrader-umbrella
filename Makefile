@@ -1,7 +1,9 @@
+BASE_URL:=$(shell dirname `git remote -v | grep fetch | cut -d'	' -f2 | cut -d' ' -f1`)
+
 usage:
 	@echo "Please choose a build target"
 
-.PHONY: all clean clone website-up android-up iphone-up
+.PHONY: all clean clone verbose pull website-pull android-pull iphone-pull
 
 all: website-pull android-pull iphone-pull 
 	make -C booktrader-website/ all
@@ -13,7 +15,7 @@ clean:
 	-make -C booktrader-android-client/ clean
 	-make -C booktrader-iphone-client/ all
 
-up: website-pull android-pull iphone-pull
+pull: website-pull android-pull iphone-pull
 	
 website-pull: booktrader-website/.git/config
 	cd booktrader-website && git pull
@@ -25,11 +27,14 @@ iphone-pull: booktrader-android-client/.git/config
 	cd booktrader-iphone-client && git pull
 
 booktrader-website/.git/config:
-	git clone git@github.com:BookTrader/booktrader-website.git
+	git clone $(BASE_URL)/booktrader-website.git
 
 booktrader-android-client/.git/config:
-	git clone git@github.com:BookTrader/booktrader-android-client.git
+	git clone $(BASE_URL)/booktrader-android-client.git
 
 booktrader-iphone-client/.git/config:
-	git clone git@github.com:BookTrader/booktrader-iphone-client.git
+	git clone $(BASE_URL)/booktrader-iphone-client.git
+
+verbose:
+	@echo $(BASE_URL)
 
