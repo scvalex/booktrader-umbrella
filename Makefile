@@ -23,7 +23,7 @@ website-pull: booktrader-website/.git/config
 android-pull: booktrader-android-client/.git/config
 	cd booktrader-android-client && git pull
 
-iphone-pull: booktrader-android-client/.git/config
+iphone-pull: booktrader-iphone-client/.git/config
 	cd booktrader-iphone-client && git pull
 
 booktrader-website/.git/config:
